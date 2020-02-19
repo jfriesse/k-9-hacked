@@ -25,6 +25,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.StrictMode;
 
+import org.conscrypt.Conscrypt;
+import java.security.Security;
+
 import com.fsck.k9.Account.SortType;
 import com.fsck.k9.activity.MessageCompose;
 import com.fsck.k9.activity.UpgradeDatabases;
@@ -525,6 +528,8 @@ public class K9 extends Application {
         if (K9.DEVELOPER_MODE) {
             StrictMode.enableDefaults();
         }
+
+        Security.insertProviderAt(Conscrypt.newProvider(), 1);
 
         PRNGFixes.apply();
 
